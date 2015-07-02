@@ -1,3 +1,11 @@
+//
+//
+//
+// OUTDATED - we use a tree-based approach now!
+// this is here for reference only.
+//
+//
+//
 // define mask and value to categorize opcodes
 // if (opcoade & mask) === value, the operation
 // falls into that category.

@@ -1,0 +1,25 @@
+{
+  "name": "arm-emulator-generator",
+  "version": "1.0.0",
+  "description": "code generator for self-optimising ARM32 CPU emulators",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "tape test/*"
+  },
+  "keywords": [
+    "arm",
+    "emulator",
+    "arm32",
+    "code-generator",
+    "just-in-time",
+    "jit"
+  ],
+  "author": "Jan Bölsche <jan@lagomorph.de> (http://regular.codes)",
+  "license": "MIT",
+  "devDependencies": {
+    "tape": "^4.0.0"
+  }
+}
