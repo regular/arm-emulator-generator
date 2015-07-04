@@ -16,14 +16,15 @@
 // - can create a SubNode that has a more narrow pattern and
 //   a more specific handler
 //
-// - can find the most specialised decendant Node for a given
+// - can find the most specialised descendant Node for a given
 //   instruction
 //
-// - counta how many time its handler was invoked
+// - counts how many time its handler was invoked
 //
 
 module.exports = Node;
 
+// this is ab abstract base class
 function Node() {
     // by default, match everything
     this.mask = 0x0;
@@ -41,7 +42,7 @@ Node.prototype.findNode = function(instruction) {
     return this;
 };
 
-// create code that extracts a n-bit unsigned integer value (the 'operand')
+// create code for a JS expression  that extracts a n-bit unsigned integer value (the 'operand')
 // as defined in the layout object) from a 32 bit unsigned integer.
 // if this.countingFilter is set, generate code that calls that function
 // with the extracted value and the operand's name.
