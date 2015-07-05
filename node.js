@@ -50,7 +50,7 @@ Node.prototype.createExtractor = function(name) {
     var bitPos = this.layout[name];
     var mask = bitPos[0];
     var shift = bitPos[1];
-    var code = "((instruction & "+mask+") >>> "+shift+")";
+    var code = "((instruction & 0x"+mask.toString(16)+") >>> "+shift+")";
     if (typeof this.countingFilter !== 'undefined') { // measure operand value frequency
       return "this.countingFilter(" + code + ", '" + name + "');";
     } else {
