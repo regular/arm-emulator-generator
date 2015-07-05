@@ -20,6 +20,7 @@
   "author": "Jan Bölsche <jan@lagomorph.de> (http://regular.codes)",
   "license": "MIT",
   "devDependencies": {
+    "microtime": "^1.4.2",
     "tape": "^4.0.0"
   }
 }
