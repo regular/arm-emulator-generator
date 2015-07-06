@@ -57,3 +57,20 @@ Node.prototype.createExtractor = function(name) {
       return code;
     }
 };
+
+// create an extractor expression for each
+// bit-field in the layout, except for those
+// already defined by ops.
+// returns a copy of ops with all missing
+// operands filled-in as extractor expressions.
+Node.prototype.createMissingExtractors = function(ops) {
+    var result = {};
+    for(var name in this.layout) {
+        if (typeof ops[name] !== 'undefined') {
+            result[name] = ops[name];
+        } else {
+            result[name] = this.createExtractor(name);
+        }
+    }
+    return result;
+};

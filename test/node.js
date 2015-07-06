@@ -10,7 +10,7 @@ test('finddNode should return the most specialised sub node', function(t) {
         t.equal(parent.findNode(0), parent);
         t.end();
     });
-    t.test('returns istself when no childreni matches', function(t) {
+    t.test('returns istself when no children matches', function(t) {
         var parent = new Node();
         parent.mask = 0x80000000;
         parent.value = 0x8000000;
@@ -24,7 +24,7 @@ test('finddNode should return the most specialised sub node', function(t) {
         t.equal(parent.findNode(0x0f), child);
         t.end();
     });
-    t.test('returns most specialised ancestor', function(t) {
+    t.test('returns most specialised descendant', function(t) {
         var parent = new Node();
         parent.mask = 0x80000000;
         parent.value = 0x8000000;
@@ -75,7 +75,7 @@ test('createExtractor', function(t) {
         t.equal(extractX(0x0f000006), 6);
         t.end();
     });
-    t.test('calls countingFilter if present', function(t) {
+    t.test('calls countingFilter, if present', function(t) {
         var count = 0;
         node.countingFilter = function() {
             ++count;
@@ -92,3 +92,19 @@ test('createExtractor', function(t) {
     t.end();
 });
 
+test('createNeededExtractors fills in missing expressions', function(t) {
+    var node = new Node();
+    node.layout = {
+        S: [0x03000000, 24],
+        X: [0x00000007, 0],
+        Y: [0x00000070, 4]
+    };
+    var result = node.createMissingExtractors({
+        S: 1
+    });
+    t.equal(result.S, 1);
+    t.equal(result.X, node.createExtractor('X'));
+    t.equal(result.Y, node.createExtractor('Y'));
+
+    t.end();
+});
