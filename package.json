@@ -20,7 +20,19 @@
   "author": "Jan Bölsche <jan@lagomorph.de> (http://regular.codes)",
   "license": "MIT",
   "devDependencies": {
+    "arm-assembler": "^1.0.0",
     "microtime": "^1.4.2",
     "tape": "^4.0.0"
-  }
+  },
+  "dependencies": {
+    "extend": "^3.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/regular/arm-emulator-generator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/regular/arm-emulator-generator/issues"
+  },
+  "homepage": "https://github.com/regular/arm-emulator-generator"
 }
