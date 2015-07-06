@@ -88,4 +88,10 @@ ConditionalNode.prototype.createCondition = function(cpsr, ops) {
     }
 };
 
+ConditionalNode.prototype.createHandler = function(ops, regs) {
+    var code = 'if (' + this.createCondition(regs+'[16]', ops) + ') {';
+    code += this.createUnconditionalHandler(ops, regs) + '}';
+    return code;
+};
+
 module.exports = ConditionalNode;

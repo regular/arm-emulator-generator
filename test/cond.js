@@ -30,6 +30,27 @@ test('createCondition should return an expression', function(t) {
         t.ok(ne(0x00000000 /* NZ */));
         t.end();
     });
+    t.test('createHandler() should wrap the unconditional handler in an if-statement', function(t) {
+        var node = new ConditionalNode();
+        node.createUnconditionalHandler = function(ops, regs) {
+            return regs+'[0] = 1;';
+        };
+        var handlerCode = node.createHandler({}, 'regs');
+        console.log(handlerCode);
+        /* jshint -W054 */
+        var handler = new Function('instruction', 'regs', handlerCode);
+
+        var regs = [];
+        regs[0] = 0;
+        regs[16] = 0x00000000; // Z not set
+        //regs[16] = 0x40000000; // Z bit set
+
+        handler(0x00000000 /* EQ */, regs);
+        t.equal(regs[0], 0);
+        handler(0x10000000 /* NE */, regs);
+        t.equal(regs[0], 1);
+        t.end();
+    });
     t.test('the retunred expressions reflect a real CPUs behaviour', function(t) {
         t.test('non-specialised', function(t) {
             var node = new ConditionalNode();
